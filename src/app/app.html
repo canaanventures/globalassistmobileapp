@@ -1,0 +1,29 @@
+<ion-menu [content]="content">
+
+  <ion-header class="menu_header">
+    <ion-toolbar class="tools">
+      <img onerror="this.onerror=null;this.src='assets/img/default.png';" src="{{imageurl}}" alt="name"
+        class="img_sign">
+      <ion-title class="titles">
+        <p align="center" style="color: white; font-weight: bold;">{{username}}</p>
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <ion-list>
+      <div *ngFor="let p of pages">
+        <button *ngIf="p.isshow" ion-item (click)="openPage(p)">
+          <ion-icon name="{{p.icon}}"></ion-icon> &nbsp; {{p.title}}
+        </button>
+      </div>
+    </ion-list>
+  </ion-content>
+  <ion-footer>
+    <ion-toolbar>
+      <ion-title>Copyrights reserved - 2021</ion-title>
+    </ion-toolbar>
+  </ion-footer>
+</ion-menu>
+
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

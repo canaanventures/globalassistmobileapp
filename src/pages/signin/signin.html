@@ -1,0 +1,50 @@
+<ion-content>
+    <ion-content class="bg-theme">
+        <div class="bg-white">
+            <ion-grid col-11 col-sm-10>
+                <ion-row>
+                    <ion-col col-12 text-center>
+                        <img src="assets/img/logo1.png" alt="logo" class="logo">
+                    </ion-col>
+                </ion-row>
+                <div class="sign-row">
+                    <ion-segment [(ngModel)]="sign">
+                        <ion-segment-button value="signin">
+                            Sign in
+                        </ion-segment-button>
+                    </ion-segment>
+                </div>
+            </ion-grid>
+        </div>
+        <div padding class="bg-theme">
+            <ion-list>
+                <form class="form-login" [formGroup]="signInForm" (ngSubmit)="submitSignInForm()" novalidate>
+                    <ion-grid col-11 col-sm-10 style="padding: 2rem 0;">
+                        <ion-row>
+                            <ion-col class="form-theme">
+                                <ion-input type="text" formControlName="UserEmail" placeholder="Email address"
+                                    class="input"></ion-input>
+                                <span class="error-mess"
+                                    *ngIf="isSignInSubmitted && signInForm.controls.UserEmail.errors?.required">
+                                    Email Id is required.
+                                </span>
+                                <ion-input type="password" formControlName="Password" placeholder="Password"
+                                    class="input"></ion-input>
+                                <span class="error-mess"
+                                    *ngIf="isSignInSubmitted && signInForm.controls.Password.errors?.required">
+                                    Password is required.
+                                </span>
+                            </ion-col>
+                        </ion-row>
+                        <ion-row>
+                            <ion-col col-12>
+                                <button ion-button color="danger" block class="btn-theme-big-red" type="submit">Sign
+                                    in</button>
+                            </ion-col>
+                        </ion-row>
+                    </ion-grid>
+                </form>
+            </ion-list>
+        </div>
+    </ion-content>
+</ion-content>

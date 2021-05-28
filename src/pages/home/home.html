@@ -1,0 +1,166 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Global Assist</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="logout()">
+        <ion-icon name="log-out"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content padding class="bg-theme">
+  <ion-card>
+    <img onerror="this.onerror=null;this.src='assets/img/default.png';" src="../../assets/img/logo1.png" alt="name"
+      class="img">
+    <ion-card-content>
+      <h2>{{greetings}}, {{profileForm.value.FirstName}}</h2>
+      <span style="color: #3f51b5; font-weight: 700;">{{profileForm.value.Rolename}}</span>
+      <span>{{profileForm.value.EmailId}}</span>
+      <!-- <span>
+          <ion-icon name="calendar"></ion-icon>Available at 11:20 PM
+      </span> -->
+    </ion-card-content>
+  </ion-card>
+  <br>
+  <h4>Personnel Information</h4>
+  <ion-card>
+    <form [formGroup]="profileForm" (ngSubmit)="onProfileSubmit()">
+      <ion-list>
+        <ion-item>
+          <ion-label floating>First Name <span class="btn-red"> *</span></ion-label>
+          <ion-input formControlName="FirstName" type="text" required></ion-input>
+        </ion-item>
+        <span class="error-mess" *ngIf="profileErrorControl.FirstName.errors?.pattern">
+          Valid Enter First Name.
+        </span>
+        <span class="error-mess" *ngIf="isSubmitted && profileErrorControl.FirstName.errors?.required">
+          First Name is required.
+        </span>
+      </ion-list>
+      <ion-list>
+        <ion-item>
+          <ion-label floating>Last Name<span class="btn-red"> *</span></ion-label>
+          <ion-input formControlName="LastName" type="text" required></ion-input>
+        </ion-item>
+        <span class="error-mess" *ngIf="profileErrorControl.LastName.errors?.pattern">
+          Valid Enter Last Name.
+        </span>
+        <span class="error-mess" *ngIf="isSubmitted && profileErrorControl.LastName.errors?.required">
+          Last Name is required.
+        </span>
+      </ion-list>
+      <ion-list>
+        <ion-item>
+          <ion-label floating>Email Id<span class="btn-red"> *</span></ion-label>
+          <ion-input formControlName="EmailId" type="email" disabled></ion-input>
+        </ion-item>
+        <span class="error-mess" *ngIf="profileErrorControl.EmailId.errors?.pattern">
+          Enter Valid Email.
+        </span>
+        <span class="error-mess" *ngIf="isSubmitted && profileErrorControl.EmailId.errors?.required">
+          Email is required.
+        </span>
+      </ion-list>
+      <ion-list>
+        <ion-item>
+          <ion-label floating>Phone No<span class="btn-red"> *</span></ion-label>
+          <ion-input formControlName="PhoneNo" type="number" required></ion-input>
+        </ion-item>
+        <span class="error-mess" *ngIf="profileErrorControl.PhoneNo.errors?.minlength">
+          Mobile Number Must be 9 digits.
+        </span>
+        <span class="error-mess" *ngIf="profileErrorControl.PhoneNo.errors?.maxlength">
+          Mobile Number Must Not exceed 10 digits.
+        </span>
+        <span class="error-mess" *ngIf="isSubmitted && profileErrorControl.PhoneNo.errors?.required">
+          Mobile No is required.
+        </span>
+      </ion-list>
+
+      <ion-list>
+        <ion-item>
+          <ion-label floating>Position</ion-label>
+          <ion-input formControlName="Rolename" type="text" disabled></ion-input>
+        </ion-item>
+      </ion-list>
+      <ion-list>
+        <ion-item>
+          <ion-label floating>Address</ion-label>
+          <ion-input formControlName="Address" type="text"></ion-input>
+        </ion-item>
+      </ion-list>
+      <ion-list>
+        <ion-item>
+          <ion-label floating>State</ion-label>
+          <ion-input formControlName="State" type="text"></ion-input>
+        </ion-item>
+      </ion-list>
+      <ion-list>
+        <ion-item>
+          <ion-label floating>Country</ion-label>
+          <ion-input formControlName="Country" type="text"></ion-input>
+        </ion-item>
+      </ion-list>
+      <ion-list>
+        <ion-item>
+          <ion-label floating>Pincode</ion-label>
+          <ion-input formControlName="Pincode" type="text"></ion-input>
+        </ion-item>
+      </ion-list>
+      <ion-list>
+        <ion-item>
+          <ion-label floating>Organization</ion-label>
+          <ion-input formControlName="OrgName" type="text" disabled></ion-input>
+        </ion-item>
+      </ion-list>
+      <ion-list *ngIf="user.RoleId == 5">
+        <ion-item>
+          <ion-label floating>Supervisor</ion-label>
+          <ion-input formControlName="Supervisor" type="text" disabled></ion-input>
+        </ion-item>
+      </ion-list>
+      <ion-list>
+        <ion-item>
+          <ion-label floating>Coordinator</ion-label>
+          <ion-input formControlName="Coordinator" type="text" disabled></ion-input>
+        </ion-item>
+      </ion-list>
+
+      <ion-grid style="padding-top: 2rem 0;">
+        <ion-col col-12>
+          <button ion-button type="submit" color="danger" block class="btn-theme-big-red">Update</button>
+        </ion-col>
+      </ion-grid>
+    </form>
+  </ion-card>
+</ion-content>
+<ion-footer style="height: 40px">
+  <ion-grid no-padding fixed>
+    <ion-row no-padding>
+      <button ion-button class="col col-4 btn-white">
+        <div class="activetab">
+          <ion-icon name="contact"></ion-icon><br>
+          <span class="icon-text">Profile</span>
+        </div>
+      </button>
+      <button *ngIf="user.RoleId == 5" ion-button class="col col-4 btn-white" (click)="openSendReport()">
+        <div>
+          <ion-icon name="folder"></ion-icon><br>
+          <span class="icon-text">Send Report</span>
+        </div>
+      </button>
+      <button *ngIf="user.RoleId == 4" ion-button class="col col-4 btn-white" (click)="openApproval()">
+        <div>
+          <ion-icon name="thumbs-up"></ion-icon><br>
+          <span class="icon-text">Approval</span>
+        </div>
+      </button>
+      <button *ngIf="user.RoleId == 5" ion-button class="col col-4 btn-white" (click)="openHistory()">
+        <div>
+          <ion-icon name="swap"></ion-icon><br>
+          <span class="icon-text">Report History</span>
+        </div>
+      </button>
+    </ion-row>
+  </ion-grid>
+</ion-footer>

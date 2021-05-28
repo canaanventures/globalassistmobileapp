@@ -1,0 +1,65 @@
+page-sendreport {
+    ion-label {
+        font-size: 13px !important;
+        color: #8a8080 !important;
+    }
+    ion-input {
+        font-size: 14px !important;
+    }
+
+    .btn-theme-big-red {
+        height: 3.5rem !important;
+        width: 97%;
+        background: #d71e1e;
+        color: #fff;
+        font-weight: bold;
+        text-transform: none;
+        border-radius: 5px;
+    }
+    .btn-red {
+        color: #d61515;
+    }
+    .error-mess {
+        margin-left: 16px;
+        font-size: 12px;
+        color: #d71e1e;
+    }
+
+    .card-md {
+        -webkit-box-shadow: none;
+        box-shadow: none;
+    }
+    .card-md h2 {
+        font-weight: bolder !important;
+    }
+    ion-card {
+        border-radius: 5px !important;
+        ion-card-content {
+            padding-left: 55px !important;
+            padding-top: 20px !important;
+            margin-left: 33px !important;
+
+            span {
+                display: block;
+                margin-top: 10px;
+                ion-icon {
+                    margin-right: 5px;
+                }
+            }
+        }
+        img.img {
+            position: absolute;
+            width: 70px;
+            height: 74px;
+            border-radius: 50%;
+            margin-left: 5px;
+            margin-top: 20px;
+        }
+    }
+
+    h4 {
+        margin: 0px 68px -1px 103px;
+        color: #d71e1e;
+        font-weight: bold;
+    }
+}

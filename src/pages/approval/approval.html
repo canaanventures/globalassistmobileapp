@@ -1,0 +1,68 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>
+            Pending Aprrovals
+        </ion-title>
+        <ion-buttons end>
+            <button ion-button (click)="logout()">
+                <ion-icon name="log-out"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="bg-theme">
+    <ion-list>
+        <ion-card *ngFor="let report of ReportList">
+            <ion-row>
+                <ion-col col-3 text-center>
+                    <h2>
+                        <span>{{report.AppMonth}}</span>
+                    </h2>
+                </ion-col>
+                <ion-col col-9>
+                    <ion-row>
+                        <ion-col col-7>
+                            <p>Field Officer</p>
+                            <h3>{{report.ReportedBy}}</h3>
+                        </ion-col>
+                        <ion-col col-5>
+                            <button style="width: 100%;height: 3rem;font-size: 1.1rem;" ion-button size="small"
+                                color="secondary" (click)="Action(report,'approve')">Approve</button>
+                        </ion-col>
+                    </ion-row>
+                    <hr>
+                    <ion-row>
+                        <ion-col col-7>
+                            <p>Organization</p>
+                            <h3>{{report.OrgName}}</h3>
+                        </ion-col>
+                        <ion-col col-5>
+                            <button style="width: 100%;height: 3rem;font-size: 1.1rem;" ion-button size="small"
+                                color="danger" (click)="Action(report,'reject')">Reject</button>
+                        </ion-col>
+                    </ion-row>
+                </ion-col>
+            </ion-row>
+        </ion-card>
+    </ion-list>
+</ion-content>
+
+<ion-footer style="height: 40px">
+    <ion-grid no-padding fixed>
+        <ion-row no-padding>
+            <button ion-button class="col col-4 btn-white" (click)="openHomePage()">
+                <div>
+                    <ion-icon name="contact"></ion-icon><br>
+                    <span class="icon-text">Profile</span>
+                </div>
+            </button>
+            <button ion-button class="col col-4 btn-white">
+                <div class="activetab">
+                    <ion-icon name="thumbs-up"></ion-icon><br>
+                    <span class="icon-text">Approval</span>
+                </div>
+            </button>
+        </ion-row>
+    </ion-grid>
+</ion-footer>
